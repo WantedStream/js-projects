@@ -1,0 +1,69 @@
+
+html,body { height: 100%;  background-color: gray;}
+#all{
+    background-color: gray;
+    -webkit-text-stroke: 1px rgb(90, 89, 89); /* width and color */
+
+}
+h1{
+    color:aliceblue;
+    font-size:300%;
+   
+    font-weight: bold;
+    font-family: sans;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:10%;
+ }
+
+#score{
+display: flex;
+justify-content: center;
+gap:10%;
+}
+
+
+#buttons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /*size:*/
+}
+
+button{
+    width: 15%; 
+    
+}
+.button > *{
+   max-width:100%;
+   max-height:100%;
+   
+
+}
+
+#condition{
+    text-align:center;
+}
+
+.outContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.outContainer > * {
+    margin-top:1%;
+    margin-bottom:1%;
+    flex-grow:1;
+}
+.outContainer button {
+    
+    
+    font-size: 40px;
+    color:aliceblue;
+    background-color: rgb(57, 58, 58);
+    border-radius: 2px;
+}
