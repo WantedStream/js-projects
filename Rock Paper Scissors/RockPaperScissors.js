@@ -43,10 +43,10 @@ switch(playerString){
 
 function game(rounds){
 
-for(i=1;i<=rounds;i++){
+/*for(i=1;i<=rounds;i++){
     console.log(playRound(prompt("enter rock,paper or scissors"),getComputerChoice(1,3)));
     
 }
-
+*/
 }
 game(10);
