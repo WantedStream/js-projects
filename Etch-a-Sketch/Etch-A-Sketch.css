@@ -27,4 +27,28 @@
     height:50em;
     border-color:black;
     border-style: solid;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+.setpixels{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.setpixels #pixel-count{
+   margin:0px;
+}
+.lines{
+    display: flex;
+    flex: 1;
+}
+.rows{
+   
+    background-color: white;
+    flex: 1;
+
+
 }
