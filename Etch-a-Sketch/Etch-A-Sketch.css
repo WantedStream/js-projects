@@ -1,0 +1,30 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(242, 83, 65, 0.982);
+    align-items: center;
+}
+.settings{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:7em;
+    width:100%;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+   
+}
+.settings button{
+    font-size:1.5em;
+}
+.settings input[type=color]{
+    width:6em;
+    height:6em;
+    border-radius: 10px;
+}
+.draw-board{
+    width:50em;
+    height:50em;
+    border-color:black;
+    border-style: solid;
+}
