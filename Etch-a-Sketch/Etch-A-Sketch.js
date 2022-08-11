@@ -20,6 +20,11 @@ pixelCount_slider.addEventListener("input",()=>{
     showCount.textContent=pixelCount;
     buildBoard(pixelCount);
 });
+document.querySelector("#delete").addEventListener('click',()=>{
+    pixelCount=pixelCount_slider.value;
+    showCount.textContent=pixelCount;
+    buildBoard(pixelCount);
+});
 
 let drawBoard= document.querySelector(".draw-board");
 
@@ -85,7 +90,18 @@ cell_var.addEventListener("mouseout",() =>{
 
 
 function getColor(){
- return "#000000";
+    let rtnStr="#";
+    if(rainbow){
+        for(let i=0;i<6;i++){
+            rtnStr+=String(Math.floor(Math.random()*10));
+        }
+    }
+    else{
+        rtnStr=document.querySelector(".color-picker").value;
+     }
+        
+    
+    return rtnStr;
 }
 
 
