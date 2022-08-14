@@ -24,74 +24,78 @@ function createButtons(buttonsDiv){
     }
 }
 
-function doOperations(text,currentTextContent){
-    let pastNumber=currentTextContent;
-    let number1="";
-    let number2="";
-    let operator="";
-    
-   for(i=0;i<operation.length;i++){
-    if(!isNaN(operation[i])||operation[i]=="."){
-        number1+=operation[i];
-    }
-    else if(operation[i]=="+"||operation[i]=="-"||operation[i]=="*"||operation[i]=="/"||operation[i]=="%"){
-
-        operator =(Array.from(operation).filter(e => e=="+"||e=="-"||e=="*"||e=="/"||e=="%"));
-        if(operator.length>=2){
-            operation=(number2+number1);
-            
-        }
-
-        number2=number1;
-        number1="";
-        
-        
-    
-    }
-    
-        
-    
+let numbers=[];
+function doOperations(){
+  
+   if(numbers.length>=4){
+   let result =operatios[numbers[1]](Number(numbers[0]),Number(numbers[2]));
+   screen.textContent=result;
+   numbers.shift();
+   numbers.shift();
+   numbers.shift();
+   numbers.unshift(result);
+   console.log(numbers);
    }
-   
 }
+function addOperator(text,currentTextContent){
+    
+    numbers.push(currentTextContent);
+    numbers.push(text);
+    
+    operation="";
+}
+
 function addEvents(buttonsdiv){
     let buttons = document.querySelectorAll(".line button");
     Array.from(buttons).forEach((button) => button.addEventListener("click",()=>{
         let currentTextContent=screen.textContent;
         let text=button.textContent;
-        if(text=="+/-"){
-            text="(SWITCH SIGN)";
-        }
+        const PI=3.14;
        if(!isNaN(text)){
             placeNum(text,currentTextContent);
        }
-       else if(text=="𝜋"||text=="+"||text=="-"||text=="*"||text=="/"||text=="%"||text=="(SWITCH SIGN)"){
+       else if(text=="+"||text=="-"||text=="*"||text=="/"||text=="(SWITCH SIGN)"){
+           
             placeOperator(text,currentTextContent);
+           
        }
-       else if(text=="."){
+       else if(text=="."||text=="𝜋"){
+        if(text=="𝜋"){
+            text=PI;
+        }
             placeDot(text,currentTextContent);
        }
        else if(text=="AC"){
         location.reload();
        }
        else if(text=="+/-"){
-            //changeMathSign(text,currentTextContent);
+        screen.textContent=currentTextContent*-1;
        }
+       else if(text=="%"){
+        screen.textContent=currentTextContent*0.01;
+       }
+       else if(text=="="){
+        if(numbers!=[]){
+        let result =operatios[numbers[1]](Number(numbers[0]),Number(currentTextContent));
+        screen.textContent=result;
+        numbers=[];
+       // numbers.push(result);
+       // console.log(result +" equals")
+        }
+       }
+
        doOperations();
        console.log(operation);
     }))
 }
 
 function placeNum(text,currentTextContent){
-    if((currentTextContent==0&&!currentTextContent.includes("."))||currentTextContent=="𝜋"||currentTextContent=="+"||currentTextContent=="-"||currentTextContent=="*"||currentTextContent=="/"||currentTextContent=="%"||currentTextContent=="(SWITCH SIGN)"){
+    if((currentTextContent==0&&!currentTextContent.includes("."))||currentTextContent=="𝜋"||currentTextContent=="+"||currentTextContent=="-"||currentTextContent=="*"||currentTextContent=="/"||currentTextContent=="(SWITCH SIGN)"||currentTextContent==(numbers[0])){
         screen.textContent=text;
-        if(text!=0){
-            operation+=text;
-        }
     }
     else{
         screen.textContent+=text;
-        operation+=text;
+  
     }
     
 }
@@ -103,7 +107,7 @@ function placeOperator(text,currentTextContent){
         if(!lastIndexDot){
         screen.textContent=text;
         if(text!=0){
-            operation+=text;
+            addOperator(text,currentTextContent);
         }
         }
     
@@ -113,10 +117,6 @@ function placeDot(text,currentTextContent){
 
     if(currentTextContent!=""&&!currentTextContent.includes(".")&&!isNaN(currentTextContent)){
         screen.textContent+=text;
-        if(currentTextContent==0){
-            operation+="0";
-        }
-        operation+=text;
     }
    
 }
