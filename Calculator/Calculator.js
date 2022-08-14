@@ -24,6 +24,21 @@ function createButtons(buttonsDiv){
             let button=document.createElement("button");
             let buttonContent=operators.shift();
             button.textContent=buttonContent;
+            let color="#6B5B95";
+            if(buttonContent=="/"||buttonContent=="+"||buttonContent=="-"||buttonContent=="*"){
+                color="orange";
+            }
+            if(buttonContent=="%"||buttonContent=="+/-"){
+                color="blue";
+            }
+           
+            if(buttonContent=="𝜋"||!isNaN(buttonContent)){
+                color="#34568B";
+            }
+            if(buttonContent=="AC"||buttonContent=="DEL"){
+                color="red";
+            }
+            button.style.backgroundColor=color;
             line.appendChild(button);
         }
         buttonsDiv.appendChild(line);
@@ -37,7 +52,7 @@ function createButtons(buttonsDiv){
     let button=document.createElement("button");
             let buttonContent=operators.shift();
             button.textContent=buttonContent;
-           
+            button.style.backgroundColor="#009B77";
             var nodes = buttonsDiv.querySelectorAll(".line");
 var last = nodes[nodes.length- 1];
 last.appendChild(button);
