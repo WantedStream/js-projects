@@ -1,12 +1,18 @@
 const operatios={
-    "+":function(a,b){return Number(a+b)}
-    ,"-":function(a,b){return Number(a-b)}
-    ,"*":function(a,b){return Number(a*b)}
-    ,"/":function(a,b){return Number(a/b)}
+    "+":function(a,b){return Number(a+b).toFixed(5);}
+    ,"-":function(a,b){return Number(a-b).toFixed(5);}
+    ,"*":function(a,b){return Number(a*b).toFixed(5);}
+    ,"/":function(a,b){let num =Number(a/b).toFixed(5);; if (num == Number.POSITIVE_INFINITY || num == Number.NEGATIVE_INFINITY)
+    {
+        alert("you cannot divide by zero!");
+        location.reload();
+
+    }
+return num;}
 };
 
 let operation="";
-let operators = ["AC","+/-","%","/",7,8,9,"*",4,5,6,"-",1,2,3,"+",0,"𝜋",".","="];
+let operators = ["AC","+/-","%","/",7,8,9,"*",4,5,6,"-",1,2,3,"+",0,"𝜋",".","=","DEL"];
 let result="";
 function createButtons(buttonsDiv){
     
@@ -22,7 +28,21 @@ function createButtons(buttonsDiv){
         }
         buttonsDiv.appendChild(line);
     }
+
+
+
+
+
+
+    let button=document.createElement("button");
+            let buttonContent=operators.shift();
+            button.textContent=buttonContent;
+           
+            var nodes = buttonsDiv.querySelectorAll(".line");
+var last = nodes[nodes.length- 1];
+last.appendChild(button);
 }
+            
 
 let numbers=[];
 function doOperations(){
@@ -73,6 +93,10 @@ function addEvents(buttonsdiv){
        }
        else if(text=="%"){
         screen.textContent=currentTextContent*0.01;
+       }
+       else if(text=="DEL"){
+        screen.textContent=currentTextContent.substring(0, currentTextContent.length-1);
+
        }
        else if(text=="="){
         if(numbers!=[]){
